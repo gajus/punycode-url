@@ -1,0 +1,87 @@
+{
+  "author": {
+    "email": "gajus@gajus.com",
+    "name": "Gajus Kuizinas",
+    "url": "http://gajus.com"
+  },
+  "ava": {
+    "files": [
+      "test/**/*"
+    ],
+    "helpers": [
+      "test/helpers/**/*"
+    ],
+    "require": [
+      "@babel/register"
+    ],
+    "sources": [
+      "src/**/*"
+    ]
+  },
+  "dependencies": {
+    "punycode": "^2.1.1",
+    "url-parse": "^1.4.7"
+  },
+  "description": "Encodes/ decodes URLs to punycode/ unicode.",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/plugin-transform-flow-strip-types": "^7.4.4",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "ava": "^2.2.0",
+    "babel-plugin-istanbul": "^5.2.0",
+    "coveralls": "^3.0.6",
+    "eslint": "^6.1.0",
+    "eslint-config-canonical": "^17.3.4",
+    "flow-bin": "^0.105.2",
+    "flow-copy-source": "^2.0.7",
+    "gitdown": "^3.1.1",
+    "husky": "^3.0.3",
+    "nyc": "^14.1.1",
+    "semantic-release": "^15.13.21",
+    "sinon": "^7.4.1"
+  },
+  "engines": {
+    "node": ">6"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run test && npm run build"
+    }
+  },
+  "keywords": [
+    "punycode",
+    "url",
+    "encode",
+    "decode",
+    "unicode"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "./dist/index.js",
+  "name": "punycode-url",
+  "nyc": {
+    "include": [
+      "src/**/*.js"
+    ],
+    "instrument": false,
+    "reporter": [
+      "text-lcov"
+    ],
+    "require": [
+      "@babel/register"
+    ],
+    "sourceMap": false
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gajus/punycode-url"
+  },
+  "scripts": {
+    "build": "rm -fr ./dist && NODE_ENV=production babel ./src --out-dir ./dist --copy-files --source-maps && flow-copy-source src dist",
+    "lint": "eslint ./src ./test && flow",
+    "test": "NODE_ENV=test ava --verbose --serial"
+  },
+  "version": "1.0.0"
+}
